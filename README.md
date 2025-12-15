@@ -90,30 +90,6 @@ Open it in your browser.
   - Switch backgrounds, panels, and text colors.
   - Adjust chart colors and subscribed row highlights.
 
----
-## Project Structure (key files)
-
-src/
-├── main.jsx # Vite + React entry, wraps App in BrowserRouter
-├── App.jsx # Routes + theme state
-├── styles.css # All global, dashboard, and chart styles
-├── pages/
-│ ├── LoginPage.jsx # Email login screen
-│ └── DashboardPage.jsx # Shell layout + header + logout
-└── components/
-└── StockDashboard.jsx # Stock logic, subscriptions, table, trend chart
----
-
-## Customization
-
-- **Change supported tickers:**  
-  Edit the `SUPPORTED_STOCKS` array in `StockDashboard.jsx`.
-
-- **Change volatility / speed:**  
-  Tweak `maxMovePercent` or the `setInterval` delay inside `tickPrice` / the update effect.
-
-- **Reset data:**  
-  Click **Logout** (clears `localStorage`) or manually clear site data from your browser.
 
 ---
 
