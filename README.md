@@ -1,16 +1,39 @@
-# React + Vite
+# Stock Broker Client Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A frontend-only **live stock dashboard** built with **React + Vite**.  
+Users log in with an email, subscribe to a few supported stocks, and see prices update every second with a live intraday trend chart.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Email login only** (no password, no backend; stored in `localStorage`).
+- **Per‑user subscriptions** for 5 stocks: `GOOG`, `TSLA`, `AMZN`, `META`, `NVDA`.
+- **Live price simulation** using a random‑walk generator updating every second.
+- **Intraday trend chart**:
+  - Shows last 60 ticks for the selected subscribed stock.
+  - Simple SVG line chart with X/Y axes.
+- **Light / Dark theme toggle** (persists while the app is open).
+- **Clean layout**:
+  - Left column: supported stocks with subscribe buttons.
+  - Right column: subscribed prices table.
+  - Bottom: intraday trend panel.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React 18, Vite
+- **Routing:** `react-router-dom`
+- **State:** React hooks (`useState`, `useEffect`, `useMemo`)
+- **Styling:** Custom CSS (no UI framework)
+- **Storage:** `localStorage` for:
+  - `currentUser`
+  - `subscriptions_<email>`
+
+---
+
+## Getting Started
+
+### 1. Clone and install
+
