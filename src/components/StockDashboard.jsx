@@ -93,16 +93,31 @@ export default function StockDashboard({ currentUser }) {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubscribe = (symbol) => {
-    setSubscriptions((prev) =>
-      prev.includes(symbol) ? prev : [...prev, symbol]
-    );
-  };
+  // const handleSubscribe = (symbol) => {
+  //   setSubscriptions((prev) =>
+  //     prev.includes(symbol) ? prev : [...prev, symbol]
+  //   );
+  // };
 
-  const handleUnsubscribe = (symbol) => {
-    setSubscriptions((prev) => prev.filter((s) => s !== symbol));
-    setSelectedSymbol((cur) => (cur === symbol ? null : cur));
-  };
+  // const handleUnsubscribe = (symbol) => {
+  //   setSubscriptions((prev) => prev.filter((s) => s !== symbol));
+  //   setSelectedSymbol((cur) => (cur === symbol ? null : cur));
+  // };
+  const handleToggleSubscription = (symbol) => {
+  setSubscriptions((prev) => {
+    if (prev.includes(symbol)) {
+      // unsubscribe
+      return prev.filter((s) => s !== symbol);
+    }
+    // subscribe
+    return [...prev, symbol];
+  });
+
+  // if you were viewing this symbol in the chart and unsubscribe it,
+  // optionally clear the selection:
+  setSelectedSymbol((cur) => (cur === symbol ? null : cur));
+};
+
 
   const trendData =
     selectedSymbol && history[selectedSymbol]
@@ -129,7 +144,7 @@ export default function StockDashboard({ currentUser }) {
                   </div> */}
                   <span className="stock-chip">{symbol}</span>
                 </div>
-                <button
+                {/* <button
                   className={
                     "stock-btn " +
                     (subscribed ? "subscribed" : "not-subscribed")
@@ -138,7 +153,16 @@ export default function StockDashboard({ currentUser }) {
                   onClick={() => handleSubscribe(symbol)}
                 >
                   {subscribed ? "Subscribed" : "Subscribe"}
-                </button>
+                </button> */}
+                <button
+  className={
+    "stock-btn " + (subscribed ? "subscribed" : "not-subscribed")
+  }
+  onClick={() => handleToggleSubscription(symbol)}
+>
+  {subscribed ? "Subscribed" : "Subscribe"}
+</button>
+
               </div>
             );
           })}
