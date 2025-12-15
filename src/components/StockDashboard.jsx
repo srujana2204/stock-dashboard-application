@@ -120,13 +120,13 @@ export default function StockDashboard({ currentUser }) {
             return (
               <div className="stock-row" key={symbol}>
                 <div className="stock-row-left">
-                  <div
+                  {/* <div
                     className={
                       "stock-checkbox " + (subscribed ? "checked" : "")
                     }
                   >
                     {subscribed ? "✓" : ""}
-                  </div>
+                  </div> */}
                   <span className="stock-chip">{symbol}</span>
                 </div>
                 <button
@@ -197,9 +197,7 @@ export default function StockDashboard({ currentUser }) {
             : "Price trend"}
         </h2>
         <p className="trend-subtitle">
-          {selectedSymbol
-            ? "Live simulated intraday trend (last 60 ticks)."
-            : "Click a stock in the table above to view its intraday trend."}
+          Click a stock in the **Subscribed prices** table above to view its live intraday trend.
         </p>
         <TrendChart data={trendData} />
       </section>
@@ -207,64 +205,7 @@ export default function StockDashboard({ currentUser }) {
   );
 }
 
-/* ---------- Simple SVG line chart ---------- */
 
-// function TrendChart({ data }) {
-//   const width = 700;
-//   const height = 220;
-//   const padding = 24;
-
-//   if (!data || data.length < 2) {
-//     return (
-//       <div className="trend-empty">
-//         Not enough data yet. Wait a few seconds after subscribing.
-//       </div>
-//     );
-//   }
-
-//   const min = Math.min(...data);
-//   const max = Math.max(...data);
-//   const range = max - min || 1;
-//   const stepX = (width - padding * 2) / (data.length - 1);
-
-//   const points = data.map((value, index) => {
-//     const x = padding + stepX * index;
-//     const y =
-//       height - padding -
-//       ((value - min) / range) * (height - padding * 2);
-//     return { x, y };
-//   });
-
-//   const pathD = points
-//     .map((p, i) => `${i === 0 ? "M" : "L"} ${p.x} ${p.y}`)
-//     .join(" ");
-
-//   return (
-//     <svg
-//       className="trend-chart"
-//       width="100%"
-//       height={height}
-//       viewBox={`0 0 ${width} ${height}`}
-//     >
-//       <line
-//         x1={padding}
-//         y1={height - padding}
-//         x2={width - padding}
-//         y2={height - padding}
-//         stroke="rgba(255,255,255,0.18)"
-//         strokeWidth="1"
-//       />
-//       <path
-//         d={pathD}
-//         fill="none"
-//         stroke="#45e27a"
-//         strokeWidth="2"
-//         strokeLinejoin="round"
-//         strokeLinecap="round"
-//       />
-//     </svg>
-//   );
-// }
 function TrendChart({ data }) {
   const width = 700;
   const height = 220;
@@ -276,7 +217,7 @@ function TrendChart({ data }) {
   if (!data || data.length < 2) {
     return (
       <div className="trend-empty">
-        Not enough data yet. Wait a few seconds after subscribing.
+        Subscribe to a stock and click it in the table above to see its trend.
       </div>
     );
   }
